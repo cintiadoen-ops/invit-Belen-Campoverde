@@ -89,8 +89,8 @@ body{background:#0D273D}
 
 
 
-.cover-frame{border-color:#B99555}.book:before{background:linear-gradient(90deg,#9B783A,#B99555 42%,#C7A96B)}.book-spine{background:#B99555}
-.cover-script-title{color:#B99555}
+.cover-frame{border-color:#A98446}.book:before{background:linear-gradient(90deg,#82612E,#A98446 42%,#B29153)}.book-spine{background:#A98446}
+.cover-script-title{color:#A98446}
 
 .book-nav{position:absolute;z-index:10;top:auto;right:12px;bottom:12px;left:auto;transform:none;margin:0;padding:0;gap:8px;border-radius:0;background:transparent;box-shadow:none;color:#0D273D}
 .book-nav button{width:34px;height:34px;border-color:transparent;color:#0D273D;font-size:18px}
@@ -98,12 +98,12 @@ body{background:#0D273D}
 .book-nav span{white-space:nowrap;font-size:9px;letter-spacing:.1em;color:#0D273D}
 .book-nav.on-cover{display:none}
 .page-cover .cover-frame{height:calc(100% + 8px);padding-bottom:90px}
-.page-cover .open-book{top:0;margin-top:26px;padding:12px 18px;border:1px solid #B99555;border-radius:2px;background:transparent;color:#F4EFE7;font-size:9px;letter-spacing:.17em;transition:background .2s ease,color .2s ease}
-.page-cover .open-book:hover,.page-cover .open-book:focus-visible{background:#B99555;color:#0D273D}
-.page-cover .open-book span{color:#B99555;transition:color .2s ease}
+.page-cover .open-book{top:0;margin-top:26px;padding:12px 18px;border:1px solid #A98446;border-radius:2px;background:transparent;color:#F4EFE7;font-size:9px;letter-spacing:.17em;transition:background .2s ease,color .2s ease}
+.page-cover .open-book:hover,.page-cover .open-book:focus-visible{background:#A98446;color:#0D273D}
+.page-cover .open-book span{color:#A98446;transition:color .2s ease}
 .page-cover .open-book:hover span,.page-cover .open-book:focus-visible span{color:#0D273D}
 .book-spine{left:12px}
-.defense-image{display:block;align-self:center;width:auto;height:clamp(90px,17vh,128px);max-width:100%;object-fit:contain;border:1px solid #B99555;border-radius:4px;margin:0 auto 8px;background:#fff}
+.defense-image{display:block;align-self:center;width:auto;height:clamp(90px,17vh,128px);max-width:100%;object-fit:contain;border:1px solid #A98446;border-radius:4px;margin:0 auto 8px;background:#fff}
 .lunch-image{display:block;align-self:center;width:auto;height:clamp(115px,24vh,185px);max-width:100%;object-fit:contain;margin:8px auto 0}
 .graduation-image{display:block;align-self:center;width:auto;height:clamp(90px,18vh,140px);max-width:100%;object-fit:contain;margin:5px auto 0}
 .intro-page{padding-top:0}
@@ -113,10 +113,10 @@ body{background:#0D273D}
 .closing-page>p{margin:7px 0}
 .closing-page .signature{margin:3px 0 0}
 .closing-page .closing-flower{color:#D77F9C}
-.page:not(.page-cover) .closing-page .eyebrow{color:#B99555}
+.page:not(.page-cover) .closing-page .eyebrow{color:#A98446}
 .closing-image{display:block;align-self:center;width:auto;height:clamp(130px,23vh,165px);max-width:100%;object-fit:contain;margin:0 auto}
-.page[data-page="2"] .month,.page[data-page="2"] .month small,.page[data-page="2"] .details p span,.page[data-page="3"] .month,.page[data-page="3"] .month small,.page[data-page="3"] .details p span{color:#B99555}
-.page[data-page="2"] .event-subtitle,.page[data-page="2"] .punctual,.page[data-page="3"] .event-subtitle,.page[data-page="4"] .closing-page>p:not(.signature){color:#B99555}
+.page[data-page="2"] .month,.page[data-page="2"] .month small,.page[data-page="2"] .details p span,.page[data-page="3"] .month,.page[data-page="3"] .month small,.page[data-page="3"] .details p span{color:#A98446}
+.page[data-page="2"] .event-subtitle,.page[data-page="2"] .punctual,.page[data-page="3"] .event-subtitle,.page[data-page="4"] .closing-page>p:not(.signature){color:#A98446}
 .page[data-page="2"] .event-subtitle,.page[data-page="2"] .punctual,.page[data-page="3"] .event-subtitle{color:#646568}
 .intro-page{align-items:flex-start;text-align:left}
 .intro-page h2,.intro-page>p{width:100%;text-align:left}
@@ -140,13 +140,15 @@ body{background:#0D273D}
 @media(max-width:480px){.book{height:min(690px,calc(100vh - 159px));min-height:565px}}
 
 /* Keep each leaf in the stack so the active one can physically turn over. */
-.book{transform-style:preserve-3d}
+.book{-webkit-transform-style:preserve-3d;transform-style:preserve-3d}
 .book-nav{z-index:110}
 .page{
   display:block;
   visibility:visible;
   transform:rotateY(0deg);
+  -webkit-transform-origin:left center;
   transform-origin:left center;
+  -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
   transition:transform .82s cubic-bezier(.65,0,.35,1),box-shadow .82s ease;
   animation:none;
@@ -171,8 +173,8 @@ body{background:#0D273D}
 }
 .book:before{background:linear-gradient(90deg,#CEC5BA,#E9E2D8 42%,#CEC5BA)}
 .book-spine{background:#CEC5BA}
-.book.cover-visible:before{background:linear-gradient(90deg,#9B783A,#B99555 42%,#C7A96B)}
-.book.cover-visible .book-spine{background:#B99555}
+.book.cover-visible:before{background:linear-gradient(90deg,#82612E,#A98446 42%,#B29153)}
+.book.cover-visible .book-spine{background:#A98446}
 .page-cover.is-turning-forward .cover-frame{border-color:transparent}
 
 /* =====================================================================
@@ -183,6 +185,7 @@ body{background:#0D273D}
 /* --- Libro --- */
 .book{
   overflow:visible;
+  -webkit-perspective:1800px;
   perspective:1800px;
   perspective-origin:50% 50%;
   background:#0D273D;
@@ -196,6 +199,7 @@ body{background:#0D273D}
 /* --- Hojas: color crema original, liso --- */
 .page{
   transition:none;
+  -webkit-transform-origin:14px 50%;
   transform-origin:14px 50%;
   will-change:transform;
   border-radius:4px 12px 12px 4px;
@@ -234,7 +238,7 @@ body{background:#0D273D}
 .page-cover.is-turning-forward,.page-cover.is-turning-back{
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),12px 0 30px rgba(0,0,0,.45);
 }
-.page-cover.is-turning-forward .cover-frame{border-color:#B99555}
+.page-cover.is-turning-forward .cover-frame{border-color:#A98446}
 
 /* sombra que la hoja proyecta sobre la página de abajo */
 .page-shadow{
@@ -272,10 +276,10 @@ body{background:#0D273D}
   pointer-events:none;
   opacity:.85;
   background:
-    linear-gradient(#B99555,#B99555) 0 26px/100% 1px no-repeat,
-    linear-gradient(#B99555,#B99555) 0 31px/100% 1px no-repeat,
-    linear-gradient(#B99555,#B99555) 0 calc(100% - 27px)/100% 1px no-repeat,
-    linear-gradient(#B99555,#B99555) 0 calc(100% - 32px)/100% 1px no-repeat;
+    linear-gradient(#A98446,#A98446) 0 26px/100% 1px no-repeat,
+    linear-gradient(#A98446,#A98446) 0 31px/100% 1px no-repeat,
+    linear-gradient(#A98446,#A98446) 0 calc(100% - 27px)/100% 1px no-repeat,
+    linear-gradient(#A98446,#A98446) 0 calc(100% - 32px)/100% 1px no-repeat;
 }
 
 /* marco dorado (doble filete) */
@@ -283,22 +287,22 @@ body{background:#0D273D}
   position:relative;
   height:100%;
   padding:40px 28px 54px;
-  border:1.5px solid #B99555;
+  border:1.5px solid #A98446;
   box-shadow:
     inset 0 0 0 5px #0D273D,
-    inset 0 0 0 6px rgba(185,149,85,.62);
+    inset 0 0 0 6px rgba(169,132,70,.62);
 }
 .cover-frame .corner{
   position:absolute;
   width:30px;height:30px;
-  border:0 solid #B99555;
+  border:0 solid #A98446;
   pointer-events:none;
 }
 .cover-frame .corner::after{
   content:"";
   position:absolute;
   width:6px;height:6px;
-  background:#B99555;
+  background:#A98446;
   transform:rotate(45deg);
 }
 .cover-frame .corner.tl{top:14px;left:14px;border-top-width:1.5px;border-left-width:1.5px}
@@ -330,4 +334,8 @@ body{background:#0D273D}
 
 @media(prefers-reduced-motion:reduce){
   .page-shadow{display:none}
+}
+
+@media(max-width:480px){
+  .page-cover h1{font-size:clamp(50px,13.5vw,66px)}
 }

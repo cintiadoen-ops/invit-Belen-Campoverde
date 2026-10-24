@@ -32,7 +32,9 @@
     const cos = Math.cos(theta);
     const flat = p >= 0.5; // a 90° la hoja es un canto: ya no se ve
 
-    page.style.transform = `rotateY(${(-p * 180).toFixed(2)}deg)`;
+    const transform = `rotateY(${(-p * 180).toFixed(2)}deg)`;
+    page.style.webkitTransform = transform;
+    page.style.transform = transform;
     page.style.visibility = flat ? 'hidden' : 'visible';
     page.style.setProperty('--shade', (flat ? 1 : sin).toFixed(3));
 
@@ -78,6 +80,7 @@
       turning = false;
       current = target;
       pageToTurn.classList.remove('is-turning-forward', 'is-turning-back');
+      pageToTurn.style.webkitTransform = '';
       pageToTurn.style.transform = '';
       pageToTurn.style.visibility = '';
       pageToTurn.style.removeProperty('--shade');
