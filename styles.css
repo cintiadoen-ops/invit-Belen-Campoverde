@@ -138,3 +138,196 @@ body{background:#0D273D}
 @media(max-width:480px){.book-nav{right:9px;bottom:9px;gap:6px}.book-nav button{width:31px;height:31px;font-size:17px}.book-nav span{font-size:10px}.page-cover .cover-frame{height:calc(100% + 8px);padding-bottom:82px}}
 .book{height:min(690px,calc(100vh - 180px));min-height:590px}
 @media(max-width:480px){.book{height:min(690px,calc(100vh - 159px));min-height:565px}}
+
+/* Keep each leaf in the stack so the active one can physically turn over. */
+.book{transform-style:preserve-3d}
+.book-nav{z-index:110}
+.page{
+  display:block;
+  visibility:visible;
+  transform:rotateY(0deg);
+  transform-origin:left center;
+  backface-visibility:hidden;
+  transition:transform .82s cubic-bezier(.65,0,.35,1),box-shadow .82s ease;
+  animation:none;
+}
+.page:not(.active){pointer-events:none}
+.page.is-turned{transform:rotateY(-180deg);visibility:hidden}
+.page.is-turning-forward{transform:rotateY(-180deg);box-shadow:12px 0 28px #09152238}
+.page.is-turning-back{transform:rotateY(0deg);box-shadow:12px 0 28px #09152238;visibility:visible}
+.page::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:8;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(90deg,transparent 58%,#09152224 100%);
+  transition:opacity .4s ease;
+}
+.page.is-turning-forward::after,.page.is-turning-back::after{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .page,.page::after{transition:none}
+}
+.book:before{background:linear-gradient(90deg,#CEC5BA,#E9E2D8 42%,#CEC5BA)}
+.book-spine{background:#CEC5BA}
+.book.cover-visible:before{background:linear-gradient(90deg,#9B783A,#B99555 42%,#C7A96B)}
+.book.cover-visible .book-spine{background:#B99555}
+.page-cover.is-turning-forward .cover-frame{border-color:transparent}
+
+/* =====================================================================
+   LIBRO v3 · tapa dura azul, hojas del mismo azul, apertura 3D
+   (solo apariencia: textos y paleta originales intactos)
+   ===================================================================== */
+
+/* --- Libro --- */
+.book{
+  overflow:visible;
+  perspective:1800px;
+  perspective-origin:50% 50%;
+  background:#0D273D;
+  border-radius:4px 12px 12px 4px;
+  box-shadow:
+    0 42px 70px -14px rgba(3,10,18,.75),
+    0 12px 24px rgba(3,10,18,.5);
+}
+.book:before,.book-spine{display:none}
+
+/* --- Hojas: color crema original, liso --- */
+.page{
+  transition:none;
+  transform-origin:14px 50%;
+  will-change:transform;
+  border-radius:4px 12px 12px 4px;
+}
+.page:not(.page-cover){
+  background-color:#E9E2D8;
+  background-image:none;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
+}
+/* sombra suave del pliegue central (lomo) */
+.page:not(.page-cover)::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:46px;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(60,42,28,.22) 0,rgba(60,42,28,.09) 9px,rgba(60,42,28,0) 46px),
+    linear-gradient(90deg,transparent 12px,rgba(255,255,255,.2) 14px,transparent 17px);
+}
+
+/* --- Sombra y brillo de la hoja mientras gira (se controla desde JS) --- */
+.page::after{
+  border-radius:inherit;
+  transition:none;
+  background:
+    linear-gradient(105deg,transparent 38%,rgba(255,255,255,.14) 56%,transparent 76%),
+    linear-gradient(90deg,rgba(0,0,0,0) 25%,rgba(0,0,0,.55) 100%);
+}
+.page.is-turning-forward::after,.page.is-turning-back::after{opacity:var(--shade,0)}
+.page.is-turning-forward,.page.is-turning-back{visibility:visible}
+.page.is-turning-forward:not(.page-cover),.page.is-turning-back:not(.page-cover){
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05),10px 0 26px rgba(0,0,0,.35);
+}
+.page-cover.is-turning-forward,.page-cover.is-turning-back{
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),12px 0 30px rgba(0,0,0,.45);
+}
+.page-cover.is-turning-forward .cover-frame{border-color:#B99555}
+
+/* sombra que la hoja proyecta sobre la página de abajo */
+.page-shadow{
+  position:absolute;
+  inset:0;
+  z-index:102;
+  pointer-events:none;
+  opacity:0;
+  border-radius:4px 12px 12px 4px;
+  background-image:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.2) 45%,rgba(0,0,0,0));
+  background-repeat:no-repeat;
+  background-size:150px 100%;
+  background-position:var(--edge,100%) 0;
+}
+
+/* =====================================================================
+   PORTADA
+   ===================================================================== */
+.page-cover{
+  inset:0;
+  padding:22px 22px 22px 42px;
+  background-color:#0D273D;
+  background-image:
+    /* surco de la bisagra */
+    linear-gradient(90deg,rgba(0,0,0,.42) 0,rgba(255,255,255,.07) 7px,rgba(0,0,0,.5) 13px,rgba(255,255,255,.12) 16px,rgba(0,0,0,.14) 30px,rgba(0,0,0,0) 70px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08);
+}
+/* franjas doradas que cruzan el lomo */
+.page-cover::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:36px;
+  pointer-events:none;
+  opacity:.85;
+  background:
+    linear-gradient(#B99555,#B99555) 0 26px/100% 1px no-repeat,
+    linear-gradient(#B99555,#B99555) 0 31px/100% 1px no-repeat,
+    linear-gradient(#B99555,#B99555) 0 calc(100% - 27px)/100% 1px no-repeat,
+    linear-gradient(#B99555,#B99555) 0 calc(100% - 32px)/100% 1px no-repeat;
+}
+
+/* marco dorado (doble filete) */
+.page-cover .cover-frame{
+  position:relative;
+  height:100%;
+  padding:40px 28px 54px;
+  border:1.5px solid #B99555;
+  box-shadow:
+    inset 0 0 0 5px #0D273D,
+    inset 0 0 0 6px rgba(185,149,85,.62);
+}
+.cover-frame .corner{
+  position:absolute;
+  width:30px;height:30px;
+  border:0 solid #B99555;
+  pointer-events:none;
+}
+.cover-frame .corner::after{
+  content:"";
+  position:absolute;
+  width:6px;height:6px;
+  background:#B99555;
+  transform:rotate(45deg);
+}
+.cover-frame .corner.tl{top:14px;left:14px;border-top-width:1.5px;border-left-width:1.5px}
+.cover-frame .corner.tr{top:14px;right:14px;border-top-width:1.5px;border-right-width:1.5px}
+.cover-frame .corner.bl{bottom:14px;left:14px;border-bottom-width:1.5px;border-left-width:1.5px}
+.cover-frame .corner.br{bottom:14px;right:14px;border-bottom-width:1.5px;border-right-width:1.5px}
+.cover-frame .corner.tl::after{top:-4px;left:-4px}
+.cover-frame .corner.tr::after{top:-4px;right:-4px}
+.cover-frame .corner.bl::after{bottom:-4px;left:-4px}
+.cover-frame .corner.br::after{bottom:-4px;right:-4px}
+
+.page-cover .monogram{
+  box-shadow:0 0 0 4px #0D273D,0 0 0 5px rgba(206,197,186,.55);
+  margin-bottom:30px;
+}
+.page-cover .open-book{margin-top:22px}
+
+@media(max-width:480px){
+  .page-cover{padding:18px 18px 18px 34px}
+  .page-cover .cover-frame{padding:34px 8px 46px}
+  .page-cover::before{width:30px}
+  .cover-frame .corner{width:24px;height:24px}
+  .cover-frame .corner.tl{top:11px;left:11px}
+  .cover-frame .corner.tr{top:11px;right:11px}
+  .cover-frame .corner.bl{bottom:11px;left:11px}
+  .cover-frame .corner.br{bottom:11px;right:11px}
+  .page-cover .monogram{margin-bottom:24px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .page-shadow{display:none}
+}
