@@ -33,9 +33,9 @@
     const flat = p >= 0.5; // a 90° la hoja es un canto: ya no se ve
 
     const transform = `rotateY(${(-p * 180).toFixed(2)}deg)`;
-    page.style.webkitTransform = transform;
+    page.style.setProperty('-webkit-transform', transform);
     page.style.transform = transform;
-    page.style.visibility = flat ? 'hidden' : 'visible';
+    page.style.visibility = 'visible';
     page.style.setProperty('--shade', (flat ? 1 : sin).toFixed(3));
 
     // dónde cae en pantalla el borde libre de la hoja (con perspectiva)
@@ -80,7 +80,7 @@
       turning = false;
       current = target;
       pageToTurn.classList.remove('is-turning-forward', 'is-turning-back');
-      pageToTurn.style.webkitTransform = '';
+      pageToTurn.style.removeProperty('-webkit-transform');
       pageToTurn.style.transform = '';
       pageToTurn.style.visibility = '';
       pageToTurn.style.removeProperty('--shade');

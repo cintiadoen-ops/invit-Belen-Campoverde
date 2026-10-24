@@ -77,6 +77,7 @@ body{background:#0D273D}
 .cover-frame{border-color:#CEC5BA}
 .monogram{border-color:#CEC5BA;color:#FEE1E6}
 .page-cover .eyebrow,.page h1 em,.cover-faculty,.botanical,.closing-flower{color:#FEE1E6}
+.page-cover .eyebrow{color:#A98446}
 .cover-degree{color:#FEE1E6}
 .fine-rule:before,.fine-rule:after{background:#CEC5BA}
 .fine-rule i{border-color:#CEC5BA}
@@ -145,6 +146,7 @@ body{background:#0D273D}
 .page{
   display:block;
   visibility:visible;
+  -webkit-transform:rotateY(0deg);
   transform:rotateY(0deg);
   -webkit-transform-origin:left center;
   transform-origin:left center;
@@ -154,9 +156,9 @@ body{background:#0D273D}
   animation:none;
 }
 .page:not(.active){pointer-events:none}
-.page.is-turned{transform:rotateY(-180deg);visibility:hidden}
-.page.is-turning-forward{transform:rotateY(-180deg);box-shadow:12px 0 28px #09152238}
-.page.is-turning-back{transform:rotateY(0deg);box-shadow:12px 0 28px #09152238;visibility:visible}
+.page.is-turned{-webkit-transform:rotateY(-180deg);transform:rotateY(-180deg);visibility:hidden}
+.page.is-turning-forward{-webkit-transform:rotateY(-180deg);transform:rotateY(-180deg);box-shadow:12px 0 28px #09152238}
+.page.is-turning-back{-webkit-transform:rotateY(0deg);transform:rotateY(0deg);box-shadow:12px 0 28px #09152238;visibility:visible}
 .page::after{
   content:"";
   position:absolute;
@@ -187,6 +189,7 @@ body{background:#0D273D}
   overflow:visible;
   -webkit-perspective:1800px;
   perspective:1800px;
+  -webkit-perspective-origin:50% 50%;
   perspective-origin:50% 50%;
   background:#0D273D;
   border-radius:4px 12px 12px 4px;
