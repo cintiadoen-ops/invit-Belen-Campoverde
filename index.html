@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#14263d" />
+  <title>Culminación de una etapa · Belén Campoverde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="book-shell">
+    <div class="book-topline"><span>UN CAPÍTULO NUEVO</span><span>2026</span></div>
+    <div class="book" aria-live="polite">
+      <aside class="book-spine" aria-hidden="true"></aside>
+      <section class="page page-cover active" data-page="0">
+        <div class="cover-frame">
+          <div class="monogram">BC</div>
+          <span class="eyebrow">BELÉN CAMPOVERDE</span>
+          <h1><span class="cover-serif-title">Culminación de una</span><br><span class="cover-script-title">etapa</span></h1>
+          <div class="fine-rule"><i></i></div>
+          <p class="cover-degree">Ingeniería en Electrónica,<br>Telecomunicaciones y Redes</p>
+          <button class="open-book" data-go="1">ABRIR INVITACIÓN <span>→</span></button>
+        </div>
+      </section>
+      <section class="page" data-page="1">
+        <div class="page-inner intro-page">
+          <h2>Al fin hice ping</h2>
+          <p class="intro-context">Tras años de procesar datos, desvelos y bugs emocionales, el prototipo por fin se gradúa. Frecuencia sintonizada: 100.3 MHz (Radio Graduación). Me encantaría que me acompañes en estos días tan especiales.</p>
+          <img class="defense-image" src="images/defensa-publica.png" alt="O me titulan o salimos en los titulares">
+          <p class="signature">Con cariño,<br><strong>Belén</strong></p>
+        </div>
+      </section>
+      <section class="page" data-page="2">
+        <div class="page-inner event-page">
+          <span class="eyebrow">PRIMER ENCUENTRO</span>
+          <h2>Defensa<br>pública</h2>
+          <p class="event-subtitle">De mi trabajo de titulación</p>
+          <div class="event-date"><span class="day">27</span><span class="month">OCTUBRE<br><small>2026</small></span></div>
+          <div class="details">
+            <p><span>HORA</span><strong>3:00 p. m.</strong></p>
+            <p><span>LUGAR</span><strong>Auditorio de Ingeniería<br>Automotriz</strong></p>
+            <p><span>VESTIMENTA</span><strong>Semiformal</strong></p>
+          </div>
+          <p class="punctual">Te espero puntualmente, por favor.</p>
+        </div>
+      </section>
+      <section class="page" data-page="3">
+        <div class="page-inner event-page">
+          <span class="eyebrow">SEGUNDO ENCUENTRO</span>
+          <h2>Mi<br>graduación</h2>
+          <p class="event-subtitle university">Escuela Superior Politécnica de Chimborazo</p>
+          <div class="event-date"><span class="day">06</span><span class="month">NOVIEMBRE<br><small>2026</small></span></div>
+          <div class="details">
+            <p><span>HORA</span><strong>8:30 a. m.</strong></p>
+            <p><span>LUGAR</span><strong>Auditorio General<br>Dr. Romeo Rodríguez</strong></p>
+            <p><span>VESTIMENTA</span><strong>Semiformal o formal</strong></p>
+            <p><span>EVENTO SOCIAL</span><strong>Lugar y hora por confirmar</strong></p>
+          </div>
+        </div>
+      </section>
+      <section class="page" data-page="4">
+        <div class="page-inner closing-page">
+          <div class="closing-flower">✿</div>
+          <span class="eyebrow">GRACIAS POR SER PARTE</span>
+          <h2>Lo mejor<br>está por venir.</h2>
+          <p>Me hace muy feliz poder compartir esta alegría contigo.</p>
+          <img class="closing-image" src="images/cierre-hamster-casco.png" alt="Hámster con casco de seguridad rosa">
+          <p class="signature"><strong>Belén Campoverde</strong></p>
+        </div>
+      </section>
+      <nav class="book-nav" aria-label="Navegación del libro">
+        <button id="prev-page" aria-label="Página anterior">←</button>
+        <span id="page-indicator" aria-live="polite">01 / 05</span>
+        <button id="next-page" aria-label="Página siguiente">→</button>
+      </nav>
+    </div>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
